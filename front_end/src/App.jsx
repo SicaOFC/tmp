@@ -8,7 +8,7 @@ import Footer from "./components/footer.jsx";
 
 function App() {
   return (
-    <>
+    <div className="container_home">
       <Header />
 
       <section className="banner">
@@ -54,7 +54,7 @@ function App() {
       </section>
 
       <Footer />
-    </>
+    </div>
   );
 }
 

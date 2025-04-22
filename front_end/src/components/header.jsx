@@ -13,7 +13,7 @@ export default function Header() {
         <img src={line} />
         <nav>
           <ul>
-            <ListItem href={"indexHomePage.html"} texto={"Home"} />
+            <ListItem href={"#"} texto={"Home"} />
             <ListItem href={"#"} texto={"Equipes"} />
             <ListItem href={"#"} texto={"Chaves"} />
             <ListItem href={"#"} texto={"Modalidades"} />
