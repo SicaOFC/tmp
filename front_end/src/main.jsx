@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import CadastroPage from "./pages/CadastroPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
+import EmailConfirmPage from "./pages/EmailConfirmPage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
+  },
+  {
+    path: "/confirmacao-email",
+    element: <EmailConfirmPage />,
   },
 ]);
 

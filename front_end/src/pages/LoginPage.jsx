@@ -1,10 +1,12 @@
-import "./LoginPage.css";
+import styles from "./LoginPage.module.scss";
 import sideImage from "../assets/sideImage.png";
 import logo from "../assets/logo.png";
+import line from "../assets/Line 3.png";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-function LoginPage() {
+export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -67,14 +69,24 @@ function LoginPage() {
 
   return (
     <>
-      <div className="container_login">
-        <div className="container-grid">
-          <div className="login-box">
-            <img src={logo} alt="Logo SICA" className="logo" />
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit} action="#" method="post">
-              <label htmlFor="rm">email</label>
+      <div className={styles.container_login}>
+        <div className={styles.container_grid}>
+          <div className={styles.login_box}>
+            <div className={styles.logo_div}>
+              <div className={styles.logo}>
+                <img src={logo} alt="Logo SICA" />
+              </div>
+              <div className={styles.line}>
+                <img src={line} alt="Linha decorativa" />
+              </div>
+              <h2>Login</h2>
+            </div>
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <label className={styles.labe} htmlFor="email">
+                Email
+              </label>
               <input
+                className={styles.input}
                 value={email}
                 onChange={handleEmailChange}
                 type="email"
@@ -83,8 +95,11 @@ function LoginPage() {
                 required
               />
 
-              <label htmlFor="password">Senha</label>
+              <label className={styles.labe} htmlFor="password">
+                Senha
+              </label>
               <input
+                className={styles.input}
                 value={senha}
                 onChange={handleSenhaChange}
                 type="password"
@@ -93,21 +108,28 @@ function LoginPage() {
                 required
               />
 
-              <button type="submit" name="submit" value="login">
+              <button
+                className={styles.button}
+                type="submit"
+                name="submit"
+                value="login"
+              >
                 Entrar
               </button>
-              <label className="sign-out">
-                Ainda não tem conta?<a href="#"> Cadastre-se!</a>
+              <label className={styles.sign_out}>
+                Ainda não tem conta?
+                <Link to="/cadastro" className={styles.a}>
+                  {" "}
+                  Cadastre-se!
+                </Link>
               </label>
             </form>
           </div>
-          <div className="image-box">
-            <img src={sideImage} alt="Usuário" className="user-image" />
+          <div className={styles.image_box}>
+            <img src={sideImage} alt="Usuário" className={styles.user_image} />
           </div>
         </div>
       </div>
     </>
   );
 }
-
-export default LoginPage;

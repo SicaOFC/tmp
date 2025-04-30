@@ -1,8 +1,10 @@
-import "./CadastroPage.css";
+import styles from "./CadastroPage.module.scss";
 import logo from "../assets/logo.png";
+import line from "../assets/Line 3.png";
 import sideImage from "../assets/sideImage.png";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function CadastroPage() {
   const [rm, setRm] = useState("");
@@ -79,15 +81,30 @@ function CadastroPage() {
 
   return (
     <>
-      <div className="container_cadastro">
-        <div className="container">
-          <div className="login-box">
-            <img src={logo} alt="Logo SICA" className="logo" />
-            <h1>Cadastro</h1>
-            <form onSubmit={handleSubmit} action="#" method="post">
-              <div className="div">
-                <label htmlFor="rm">RM</label>
+      <div className={styles.container_cadastro}>
+        <div className={styles.container}>
+          <div className={styles.login_box}>
+            <div className={styles.logo_div}>
+              <div className={styles.logo}>
+                <img src={logo} alt="Logo SICA" />
+              </div>
+              <div className={styles.line}>
+                <img src={line} alt="Linha decorativa" />
+              </div>
+              <h2>Cadastro</h2>
+            </div>
+            <form
+              className={styles.form}
+              onSubmit={handleSubmit}
+              action="#"
+              method="post"
+            >
+              <div className={styles.div}>
+                <label className={styles.label} htmlFor="rm">
+                  RM
+                </label>
                 <input
+                  className={styles.input_select}
                   value={rm}
                   onChange={handleRmChange}
                   type="number"
@@ -98,9 +115,12 @@ function CadastroPage() {
                 />
               </div>
 
-              <div className="div">
-                <label htmlFor="nome">Nome</label>
+              <div className={styles.div}>
+                <label className={styles.label} htmlFor="nome">
+                  Nome
+                </label>
                 <input
+                  className={styles.input_select}
                   value={nome}
                   onChange={handleNomeChange}
                   type="text"
@@ -110,9 +130,12 @@ function CadastroPage() {
                   required
                 />
               </div>
-              <div className="div">
-                <label htmlFor="classe">Classe</label>
+              <div className={styles.div}>
+                <label className={styles.label} htmlFor="classe">
+                  Classe
+                </label>
                 <select
+                  className={styles.input_select}
                   value={curso}
                   onChange={handleCursoChange}
                   id="classe"
@@ -125,10 +148,13 @@ function CadastroPage() {
                 </select>
               </div>
 
-              <label htmlFor="email">Email</label>
-              <div className="div">
-                <div className="email">
+              <div className={styles.div}>
+                <label className={styles.label} htmlFor="email">
+                  Email
+                </label>
+                <div className={styles.email}>
                   <input
+                    className={styles.input_select}
                     value={email}
                     onChange={handleEmailChange}
                     type="email"
@@ -139,24 +165,37 @@ function CadastroPage() {
                 </div>
               </div>
 
-              {/* <div className="div">
-              <label htmlFor="sexo">Sexo</label>
-              <div>
-                <input type="radio" name="sexo" value="M" required /> M
-                <input
-                  type="radio"
-                  name="sexo"
-                  value="F"
-                  required
-                  style={{ marginLeft: "25px" }}
-                />{" "}
-                F
-              </div>
-            </div> */}
+              {/* <div className={styles.div}>
+                <label className={styles.label} htmlFor="sexo">
+                  Sexo
+                </label>
+                <div>
+                  <input
+                    className={styles.radio}
+                    type="radio"
+                    name="sexo"
+                    value="M"
+                    required
+                  />{" "}
+                  M
+                  <input
+                    className={styles.radio}
+                    type="radio"
+                    name="sexo"
+                    value="F"
+                    required
+                    style={{ marginLeft: "25px" }}
+                  />{" "}
+                  F
+                </div>
+              </div> */}
 
-              <div className="div">
-                <label htmlFor="nascimento">Data de Nascimento</label>
+              <div className={styles.div}>
+                <label className={styles.label} htmlFor="nascimento">
+                  Data de Nascimento
+                </label>
                 <input
+                  className={styles.input_select}
                   value={data}
                   onChange={handleDataChange}
                   type="date"
@@ -167,9 +206,12 @@ function CadastroPage() {
                 />
               </div>
 
-              <div className="div">
-                <label htmlFor="password">Senha</label>
+              <div className={styles.div}>
+                <label className={styles.label} htmlFor="password">
+                  Senha
+                </label>
                 <input
+                  className={styles.input_select}
                   value={senha}
                   onChange={handleSenhaChange}
                   type="password"
@@ -179,9 +221,12 @@ function CadastroPage() {
                 />
               </div>
 
-              <div className="div">
-                <label htmlFor="telefone">Telefone</label>
+              <div className={styles.div}>
+                <label className={styles.label} htmlFor="telefone">
+                  Telefone
+                </label>
                 <input
+                  className={styles.input_select}
                   value={telefone}
                   onChange={handleTelefoneChange}
                   type="text"
@@ -191,19 +236,28 @@ function CadastroPage() {
                 />
               </div>
 
-              <div className="div">
-                <button type="submit" name="submit" value="cadastrar">
+              <div className={styles.div}>
+                <button
+                  className={styles.button}
+                  type="submit"
+                  name="submit"
+                  value="cadastrar"
+                >
                   Cadastrar
                 </button>
               </div>
 
-              <label style={{ textAlign: "center" }}>
-                <a href="indexLoginPage.html">Já tem uma conta? Logar</a>
+              <label className={styles.sign_out}>
+                Já tem conta?
+                <Link to="/login" className={styles.a}>
+                  {" "}
+                  Entre!
+                </Link>
               </label>
             </form>
           </div>
-          <div className="image-box">
-            <img src={sideImage} alt="Usuário" className="user-image" />
+          <div className={styles.image_box}>
+            <img src={sideImage} alt="Usuário" className={styles.user_image} />
           </div>
         </div>
       </div>
