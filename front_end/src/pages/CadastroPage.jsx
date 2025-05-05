@@ -242,6 +242,10 @@ function CadastroPage() {
                   type="submit"
                   name="submit"
                   value="cadastrar"
+                  href="/confirmacao-email-cadastro"
+                  onClick={() => {
+                    navigate("/confirmacao-email-cadastro");
+                  }}
                 >
                   Cadastrar
                 </button>

@@ -113,6 +113,10 @@ export default function LoginPage() {
                 type="submit"
                 name="submit"
                 value="login"
+                href="/confirmacao-email-login"
+                onClick={() => {
+                  navigate("/confirmacao-email-login");
+                }}
               >
                 Entrar
               </button>
