@@ -1,14 +1,24 @@
-import React, { useRef } from "react";
-
 import style from "./EmailConfirmPage.module.scss";
 import logo from "../assets/logo.png";
 import line from "../assets/Line 3.png";
 import si from "../assets/ConfirmEmailImg.png";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useRef, useState } from "react";
 
 export default function EmailConfirmPage() {
+  const navigate = useNavigate();
+
   const inputRefs = useRef([]);
+  const [codigoArray, setCodigoArray] = useState(["", "", "", "", "", ""]);
+
+  const location = useLocation();
+  const { token } = location.state || {};
 
   const handleInputChange = (e, index) => {
+    const newCodigo = [...codigoArray];
+    newCodigo[index] = e.target.value;
+    setCodigoArray(newCodigo);
+
     if (
       e.target.value.length === e.target.maxLength &&
       inputRefs.current[index + 1]
@@ -25,6 +35,34 @@ export default function EmailConfirmPage() {
     ) {
       inputRefs.current[index - 1].focus();
     }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const codigoVerificacao = codigoArray.join("");
+    console.log(token);
+    const cadastroResponse = await fetch(
+      "http://localhost:3000/usuario/verificarLogin",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ codigoVerificacao }),
+      }
+    );
+
+    const CadastroResult = await cadastroResponse.json();
+
+    if (!cadastroResponse.ok) {
+      throw new Error(
+        `Erro ${CadastroResult.status}: ${JSON.stringify(CadastroResult)}`
+      );
+    }
+
+    console.log("Login feito com sucesso:", CadastroResult);
+    navigate("/");
   };
 
   return (
@@ -58,10 +96,16 @@ export default function EmailConfirmPage() {
                   ref={(el) => (inputRefs.current[index] = el)}
                   onChange={(e) => handleInputChange(e, index)}
                   onKeyDown={(e) => handleKeyDown(e, index)}
+                  value={codigoArray[index]}
                 />
               ))}
             </div>
-            <button className={style.button}>Verificar</button>
+            <input
+              type="submit"
+              onClick={handleSubmit}
+              className={style.button}
+              value="Verificar"
+            />
           </div>
           <div className={style.image_section}>
             <img src={si} alt="Imagem de proteção" />

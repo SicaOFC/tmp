@@ -4,8 +4,8 @@ import "./index.css";
 import App from "./App.jsx";
 import CadastroPage from "./pages/CadastroPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
-import EmailLoginConfirmPage from "./pages/EmailConfirmPage.jsx";
-import EmailPerfilConfirmPage from "./pages/EmailProfileConfirmPage.jsx";
+import EmailLoginConfirmPage from "./pages/EmailLoginConfirmPage.jsx";
+import EmailPerfilConfirmPage from "./pages/EmailPerfilConfirmPage.jsx";
 import EmailSignConfirmPage from "./pages/EmailSignConfirmPage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -23,15 +23,15 @@ const router = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    path: "/confirmacao-email-login",
+    path: "/confirmacao-login",
     element: <EmailLoginConfirmPage />,
   },
   {
-    path: "/confirmacao-email-perfil",
+    path: "/confirmacao-perfil",
     element: <EmailPerfilConfirmPage />,
   },
   {
-    path: "/confirmacao-email-sign",
+    path: "/confirmacao-cadastro",
     element: <EmailSignConfirmPage />,
   },
 ]);

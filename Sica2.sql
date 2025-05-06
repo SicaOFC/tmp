@@ -1,17 +1,17 @@
-create database sica;
-drop database sica;
-use sica;
-
-create table Cadastro 
-(
-RM		int(6) primary key not null,
-Nome	varchar(30) not null,
-Curso	varchar(20) not null,
-Email	varchar(30) not null unique,
-Senha	varchar(20) not null,
-Telefone varchar(20) not null
+CREATE TABLE login (
+    id SERIAL PRIMARY KEY,
+    rm INTEGER NOT NULL,
+    nome VARCHAR(30) NOT NULL,
+    curso VARCHAR(20) NOT NULL,
+    email VARCHAR(30) NOT NULL UNIQUE,
+    senha TEXT NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
+    dataCriacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    verificado BOOLEAN DEFAULT FALSE,
+    codigoVerificacao INTEGER,
+    dataCriacaoCodigo TIMESTAMP
 );
 
-ALTER TABLE Cadastro
-ADD CONSTRAINT min_Senha CHECK (LENGTH(Senha) >= 8),
-ADD CONSTRAINT min_Nome CHECK (LENGTH(Nome) >= 10);
+ALTER TABLE login
+ADD CONSTRAINT min_senha CHECK (LENGTH(senha) >= 8),
+ADD CONSTRAINT min_nome CHECK (LENGTH(nome) >= 10);

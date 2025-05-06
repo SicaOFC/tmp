@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 function CadastroPage() {
   const [rm, setRm] = useState("");
   const [nome, setNome] = useState("");
-  const [curso, setCurso] = useState("");
+  const [curso, setCurso] = useState("1DS");
   const [email, setEmail] = useState("");
   const [data, setData] = useState("");
   const [senha, setSenha] = useState("");
@@ -55,6 +55,8 @@ function CadastroPage() {
       data,
       senha,
       telefone,
+      codigoverificacao: Math.floor(99999 + Math.random() * 900000),
+      datacriacaocodigo: new Date()
     };
 
     console.log("Enviando:", JSON.stringify(userInfo));
@@ -67,12 +69,12 @@ function CadastroPage() {
       body: JSON.stringify(userInfo),
     })
       .then(async (response) => {
-        const result = await response.text(); // <-- captura resposta crua
+        const result = await response.json();
         console.log("Resposta do servidor:", result);
-        if (!response.ok) {
-          throw new Error(`Erro ${response.status}: ${result}`);
-        }
-        navigate("/login");
+        console.log("o token é ", result.token);
+        navigate("/confirmacao-cadastro", {
+          state: { token: result.token },
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -242,10 +244,6 @@ function CadastroPage() {
                   type="submit"
                   name="submit"
                   value="cadastrar"
-                  href="/confirmacao-email-cadastro"
-                  onClick={() => {
-                    navigate("/confirmacao-email-cadastro");
-                  }}
                 >
                   Cadastrar
                 </button>

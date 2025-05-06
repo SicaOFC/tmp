@@ -3,7 +3,7 @@ import sideImage from "../assets/sideImage.png";
 import logo from "../assets/logo.png";
 import line from "../assets/Line 3.png";
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function LoginPage() {
@@ -59,6 +59,22 @@ export default function LoginPage() {
           }
 
           console.log("Login efetuado com sucesso:", loginResult);
+          fetch("http://localhost:3000/usuario/enviarCodigo", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }).then(response => console.log(response.json()));
+          if (loginResult.usuario.verificado == true) {
+            navigate("/confirmacao-login", {
+              state: { token: token },
+            });
+          }
+          else {
+            navigate("/confirmacao-cadastro", {
+              state: { token: token },
+            });
+          }
         });
       })
 
@@ -113,10 +129,6 @@ export default function LoginPage() {
                 type="submit"
                 name="submit"
                 value="login"
-                href="/confirmacao-email-login"
-                onClick={() => {
-                  navigate("/confirmacao-email-login");
-                }}
               >
                 Entrar
               </button>

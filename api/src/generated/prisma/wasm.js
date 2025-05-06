@@ -124,7 +124,11 @@ exports.Prisma.LoginScalarFieldEnum = {
   curso: 'curso',
   email: 'email',
   senha: 'senha',
-  telefone: 'telefone'
+  telefone: 'telefone',
+  datacriacao: 'datacriacao',
+  verificado: 'verificado',
+  codigoverificacao: 'codigoverificacao',
+  datacriacaocodigo: 'datacriacaocodigo'
 };
 
 exports.Prisma.SortOrder = {
@@ -135,6 +139,11 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 
